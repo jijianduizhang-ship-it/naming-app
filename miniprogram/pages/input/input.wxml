@@ -1,0 +1,83 @@
+<!--input.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">填写信息</text>
+    <text class="subtitle">根据以下信息，为您推荐合适的名字</text>
+  </view>
+
+  <view class="form">
+    <!-- 姓氏 -->
+    <view class="form-item">
+      <text class="label">姓氏 *</text>
+      <input 
+        class="input" 
+        placeholder="请输入姓氏" 
+        maxlength="1"
+        bindinput="onSurnameInput"
+      />
+    </view>
+
+    <!-- 性别 -->
+    <view class="form-item">
+      <text class="label">性别 *</text>
+      <view class="gender-select">
+        <view 
+          class="gender-btn {{gender === 'boy' ? 'active' : ''}}" 
+          bindtap="selectGender" 
+          data-gender="boy"
+        >
+          <text class="gender-icon">👦</text>
+          <text>男宝宝</text>
+        </view>
+        <view 
+          class="gender-btn {{gender === 'girl' ? 'active' : ''}}" 
+          bindtap="selectGender" 
+          data-gender="girl"
+        >
+          <text class="gender-icon">👧</text>
+          <text>女宝宝</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 出生日期 -->
+    <view class="form-item">
+      <text class="label">出生日期 *</text>
+      <picker mode="date" value="{{birthday}}" bindchange="onBirthdayChange">
+        <view class="picker">
+          <text>{{birthday || '请选择出生日期'}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 出生时辰 -->
+    <view class="form-item">
+      <text class="label">出生时辰</text>
+      <picker mode="selector" range="{{hours}}" bindchange="onHourChange">
+        <view class="picker">
+          <text>{{hour !== null ? hours[hour] + '时' : '请选择（可选）'}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 姓氏来源 -->
+    <view class="form-item">
+      <text class="label">姓氏来源</text>
+      <picker mode="selector" range="{{surnameTypes}}" bindchange="onSurnameTypeChange">
+        <view class="picker">
+          <text>{{surnameTypes[surnameType] || '请选择（可选）'}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 生成按钮 -->
+  <view class="bottom">
+    <button class="generate-btn" bindtap="generateNames" disabled="{{!canGenerate}}">
+      <text>✨ 生成名字</text>
+    </button>
+  </view>
+</view>

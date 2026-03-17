@@ -1,0 +1,43 @@
+<!--result.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">为您推荐的名字</text>
+    <text class="subtitle">点击名字查看详情</text>
+  </view>
+
+  <scroll-view scroll-y class="names-list">
+    <view 
+      class="name-card" 
+      wx:for="{{names}}" 
+      wx:key="index"
+      bindtap="viewDetail"
+      data-name="{{item.name}}"
+    >
+      <view class="name-main">
+        <text class="name">{{surname}}{{item.name}}</text>
+        <view class="score-badge">
+          <text class="score">{{item.score}}</text>
+          <text class="score-label">分</text>
+        </view>
+      </view>
+      <view class="name-info">
+        <text class="meaning">📝 {{item.meaning}}</text>
+        <text class="source">📖 {{item.source}}</text>
+      </view>
+      <view class="actions">
+        <button class="action-btn" catchtap="collect" data-name="{{item.name}}">
+          <text>❤️ 收藏</text>
+        </button>
+        <button class="action-btn" catchtap="share" data-name="{{item.name}}">
+          <text>📤 分享</text>
+        </button>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom">
+    <button class="refresh-btn" bindtap="refresh">
+      <text>🔄 换一批</text>
+    </button>
+  </view>
+</view>

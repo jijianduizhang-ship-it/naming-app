@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- Hero Section -->
+  <view class="hero">
+    <view class="logo-area">
+      <text class="logo-icon">✨</text>
+      <text class="app-name">智能起名</text>
+    </view>
+    <text class="slogan">结合八字五行、生肖属相、诗词典故</text>
+    <text class="slogan">为宝宝起一个寓意美好的名字</text>
+  </view>
+
+  <!-- Feature Cards -->
+  <view class="features">
+    <view class="feature-card">
+      <text class="feature-icon">📚</text>
+      <text class="feature-title">诗词典故</text>
+      <text class="feature-desc">出自《诗经》、唐诗宋词</text>
+    </view>
+    <view class="feature-card">
+      <text class="feature-icon">🔢</text>
+      <text class="feature-title">八字五行</text>
+      <text class="feature-desc">结合生辰八字五行</text>
+    </view>
+    <view class="feature-card">
+      <text class="feature-icon">🐯</text>
+      <text class="feature-title">生肖属相</text>
+      <text class="feature-desc">符合属相宜用字</text>
+    </view>
+  </view>
+
+  <!-- Start Button -->
+  <view class="start-section">
+    <button class="start-btn" bindtap="goToInput">
+      <text>开始起名</text>
+    </button>
+    <text class="hot-names-title">热门名字</text>
+    <view class="hot-names">
+      <text class="hot-tag" wx:for="{{hotNames}}" wx:key="index">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Stats -->
+  <view class="stats">
+    <view class="stat-item">
+      <text class="stat-num">100,000+</text>
+      <text class="stat-label">名字库</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">98%</text>
+      <text class="stat-label">用户满意</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">免费</text>
+      <text class="stat-label">使用</text>
+    </view>
+  </view>
+</view>

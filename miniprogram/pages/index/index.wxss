@@ -1,0 +1,161 @@
+/* index.wxss */
+page {
+  background: linear-gradient(180deg, #E8F5E9 0%, #FFFFFF 100%);
+  min-height: 100vh;
+}
+
+.container {
+  padding: 40rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.logo-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.app-name {
+  font-size: 56rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  letter-spacing: 4rpx;
+}
+
+.slogan {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+/* Features */
+.features {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+.feature-card {
+  width: 31%;
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(76, 175, 80, 0.1);
+}
+
+.feature-icon {
+  font-size: 60rpx;
+  margin-bottom: 16rpx;
+}
+
+.feature-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.feature-desc {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+}
+
+/* Start Button */
+.start-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.start-btn {
+  width: 80%;
+  height: 100rpx;
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  border-radius: 50rpx;
+  color: white;
+  font-size: 36rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 30rpx rgba(76, 175, 80, 0.3);
+  border: none;
+  margin-bottom: 40rpx;
+}
+
+.start-btn:active {
+  transform: scale(0.98);
+}
+
+.hot-names-title {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 20rpx;
+}
+
+.hot-names {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+.hot-tag {
+  padding: 12rpx 24rpx;
+  background: white;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #4CAF50;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 40rpx 0;
+  background: white;
+  border-radius: 20rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
