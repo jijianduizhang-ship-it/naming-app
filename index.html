@@ -23,45 +23,18 @@
         
         .container { max-width: 480px; margin: 0 auto; min-height: 100vh; }
         
-        .header {
-            padding: 50px 30px 30px;
-            text-align: center;
-            background: linear-gradient(180deg, rgba(99, 102, 241, 0.3) 0%, transparent 100%);
-        }
+        .header { padding: 50px 30px 30px; text-align: center; background: linear-gradient(180deg, rgba(99, 102, 241, 0.3) 0%, transparent 100%); }
         
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
-            animation: float 3s ease-in-out infinite;
-        }
+        .logo { width: 100px; height: 100px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 28px; display: flex; align-items: center; justify-content: center; font-size: 48px; box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4); animation: float 3s ease-in-out infinite; }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
-        .app-name {
-            font-size: 36px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        
+        .app-name { font-size: 36px; font-weight: 700; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
         .slogan { font-size: 14px; color: rgba(255,255,255,0.7); }
         .badge { display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 16px; font-size: 12px; color: #1a1a2e; font-weight: 600; margin-top: 12px; }
         
         .tabs { display: flex; padding: 0 20px; gap: 10px; margin-bottom: 20px; }
-        .tab { flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-align: center; font-size: 14px; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.3s; }
+        .tab { flex: 1; padding: 12px 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.3s; }
         .tab.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-color: transparent; color: white; }
         
         .card { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 28px; margin: 0 20px 20px; }
@@ -81,6 +54,7 @@
         
         .btn { width: 100%; height: 58px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border: none; border-radius: 29px; color: white; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4); transition: all 0.3s; }
         .btn:active { transform: scale(0.98); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .results { display: none; margin: 0 20px 20px; }
         .results.show { display: block; animation: slideUp 0.5s ease; }
@@ -110,49 +84,62 @@
         .zodiac-label { font-size: 12px; color: rgba(255,255,255,0.7); }
         .zodiac-value { font-size: 14px; font-weight: 600; margin-top: 4px; }
         
+        .check-result { display: none; margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 16px; }
+        .check-result.show { display: block; }
+        .check-score { font-size: 48px; font-weight: bold; text-align: center; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .check-label { text-align: center; font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+        
+        .search-result { margin-top: 16px; }
+        .search-item { padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 10px; }
+        .search-item-name { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+        .search-item-info { font-size: 13px; color: rgba(255,255,255,0.7); }
+        
+        .empty { text-align: center; padding: 40px; color: rgba(255,255,255,0.5); }
+        
+        .action-btns { display: flex; gap: 10px; margin-top: 12px; }
+        .action-btn { flex: 1; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 13px; text-align: center; cursor: pointer; }
+        .action-btn:hover { background: rgba(255,255,255,0.2); }
+        
         .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: -1; }
         .star { position: absolute; width: 3px; height: 3px; background: white; border-radius: 50%; animation: twinkle 2s infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
         
         .footer { text-align: center; padding: 30px 20px; color: rgba(255,255,255,0.4); font-size: 12px; }
         
-        /* Check Tab */
-        .check-result { display: none; margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 16px; }
-        .check-result.show { display: block; }
-        .check-score { font-size: 48px; font-weight: bold; text-align: center; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .check-label { text-align: center; font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+        /* VIP/Redeem */
+        .vip-card { background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 20px; }
+        .vip-title { font-size: 24px; font-weight: bold; color: #1a1a2e; margin-bottom: 8px; }
+        .vip-balance { font-size: 36px; font-weight: bold; color: #1a1a2e; }
+        .vip-label { font-size: 14px; color: rgba(0,0,0,0.6); }
         
-        /* Search Tab */
-        .search-result { margin-top: 16px; }
-        .search-item { padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 10px; }
-        .search-item-name { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
-        .search-item-info { font-size: 13px; color: rgba(255,255,255,0.7); }
+        .redeem-box { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; margin-top: 16px; }
+        .redeem-input { background: rgba(255,255,255,0.1); border: none; border-radius: 8px; padding: 12px; width: 100%; color: white; font-size: 14px; margin-bottom: 10px; }
         
-        /* Collection */
-        .empty { text-align: center; padding: 40px; color: rgba(255,255,255,0.5); }
+        .toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); background: rgba(0,0,0,0.9); color: white; padding: 20px 40px; border-radius: 12px; font-size: 16px; z-index: 1000; transition: transform 0.3s; }
+        .toast.show { transform: translate(-50%, -50%) scale(1); }
         
-        /* Actions */
-        .action-btns { display: flex; gap: 10px; margin-top: 12px; }
-        .action-btn { flex: 1; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 13px; text-align: center; cursor: pointer; }
-        .action-btn:hover { background: rgba(255,255,255,0.2); }
+        .no-credits { text-align: center; padding: 40px 20px; }
+        .no-credits-icon { font-size: 60px; margin-bottom: 16px; }
+        .no-credits-text { font-size: 18px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="stars" id="stars"></div>
+    <div class="toast" id="toast"></div>
     
     <div class="container">
         <div class="header">
             <div class="logo">✨</div>
             <div class="app-name">智能起名</div>
             <div class="slogan">八字五行 · 生肖属相 · 诗词典故</div>
-            <div class="badge">🎁 免费智能 · 专业可靠</div>
+            <div class="badge" id="creditsBadge">剩余次数: 0次</div>
         </div>
         
         <div class="tabs">
             <div class="tab active" onclick="switchTab('name')">🔮 起名</div>
-            <div class="tab" onclick="switchTab('check')">✅ 查重名</div>
+            <div class="tab" onclick="switchTab('check')">✅ 查重</div>
             <div class="tab" onclick="switchTab('zodiac')">🐯 生肖</div>
-            <div class="tab" onclick="switchTab('search')">🔍 搜索</div>
+            <div class="tab" onclick="switchTab('redeem')">🎁 兑换</div>
         </div>
         
         <!-- 起名 -->
@@ -178,7 +165,7 @@
                     <label class="label">出生日期</label>
                     <input type="date" id="birthday" style="color-scheme: dark;">
                 </div>
-                <button class="btn" onclick="generateNames()">开始起名</button>
+                <button class="btn" id="generateBtn" onclick="generateNames()">开始起名</button>
             </div>
         </div>
         
@@ -191,7 +178,6 @@
                     <input type="text" id="checkName" placeholder="如：张浩然">
                 </div>
                 <button class="btn" onclick="checkName()">查询重名率</button>
-                
                 <div class="check-result" id="checkResult">
                     <div class="check-score" id="checkScore">-</div>
                     <div class="check-label" id="checkLabel">重名率</div>
@@ -236,15 +222,31 @@
             </div>
         </div>
         
-        <!-- 搜索 -->
-        <div id="tab-search" style="display: none;">
+        <!-- 兑换 -->
+        <div id="tab-redeem" style="display: none;">
             <div class="card">
-                <div class="card-title">🔍 名字搜索</div>
-                <div class="form-item">
-                    <label class="label">搜索名字库</label>
-                    <input type="text" id="searchInput" placeholder="输入名字搜索" oninput="searchNames()">
+                <div class="card-title">🎁 兑换中心</div>
+                
+                <div class="vip-card">
+                    <div class="vip-title">我的余额</div>
+                    <div class="vip-balance" id="balanceDisplay">0</div>
+                    <div class="vip-label">次起名机会</div>
                 </div>
-                <div class="search-result" id="searchResult"></div>
+                
+                <div class="redeem-box">
+                    <label class="label">输入兑换码</label>
+                    <input type="text" class="redeem-input" id="redeemCode" placeholder="请输入兑换码">
+                    <button class="btn" onclick="redeemCode()">立即兑换</button>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px;">💡 兑换码示例（测试用）：</div>
+                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">
+                        VIP888（兑换30次）<br>
+                        FREE10（兑换10次）<br>
+                        TEST5（兑换5次）
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -260,6 +262,21 @@
     </div>
     
     <script>
+        // 初始化
+        let credits = parseInt(localStorage.getItem('naming_credits') || '0');
+        
+        // 兑换码配置
+        const redeemCodes = {
+            'VIP888': { amount: 30, description: 'VIP礼包' },
+            'FREE10': { amount: 10, description: '免费10次' },
+            'TEST5': { amount: 5, description: '测试5次' },
+            'NEWUSER': { amount: 3, description: '新用户礼包' },
+            'NAMING666': { amount: 20, description: '起名666' }
+        };
+        
+        // 初始化显示
+        updateCreditsDisplay();
+        
         // Create stars
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 50; i++) {
@@ -284,7 +301,7 @@
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
             
-            ['name', 'check', 'zodiac', 'search'].forEach(t => {
+            ['name', 'check', 'zodiac', 'redeem'].forEach(t => {
                 document.getElementById('tab-' + t).style.display = tab === t ? 'block' : 'none';
             });
             document.getElementById('results').classList.remove('show');
@@ -299,6 +316,40 @@
             });
         }
         
+        function updateCreditsDisplay() {
+            document.getElementById('creditsBadge').textContent = '剩余次数: ' + credits + '次';
+            document.getElementById('balanceDisplay').textContent = credits;
+            document.getElementById('generateBtn').disabled = credits <= 0;
+        }
+        
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+        
+        // 兑换码
+        function redeemCode() {
+            const code = document.getElementById('redeemCode').value.trim().toUpperCase();
+            
+            if (!code) {
+                showToast('请输入兑换码');
+                return;
+            }
+            
+            if (redeemCodes[code]) {
+                const reward = redeemCodes[code];
+                credits += reward.amount;
+                localStorage.setItem('naming_credits', credits);
+                updateCreditsDisplay();
+                document.getElementById('redeemCode').value = '';
+                showToast('✅ 兑换成功！获得' + reward.amount + '次');
+            } else {
+                showToast('❌ 兑换码无效');
+            }
+        }
+        
         // 名字数据库
         const allNames = {
             boy: [
@@ -310,10 +361,6 @@
                 { name: '瑾瑜', score: 96, meaning: '美玉无瑕，光彩照人', source: '《诗经》', wuxing: '木' },
                 { name: '梓涵', score: 93, meaning: '生机勃勃，涵养深厚', source: '诗词', wuxing: '木' },
                 { name: '子墨', score: 92, meaning: '文房四宝，诗书传家', source: '诗词', wuxing: '土' },
-                { name: '瑞霖', score: 91, meaning: '吉祥如意，甘霖普降', source: '诗词', wuxing: '水' },
-                { name: '锦程', score: 95, meaning: '前程似锦，锦绣前程', source: '成语', wuxing: '金' },
-                { name: '奕辰', score: 90, meaning: '神采奕奕，星辰璀璨', source: '诗词', wuxing: '木' },
-                { name: '沐晨', score: 89, meaning: '如沐春风，晨光熹微', source: '诗词', wuxing: '水' },
             ],
             girl: [
                 { name: '诗涵', score: 97, meaning: '诗情画意，含苞待放', source: '《诗经》', wuxing: '水' },
@@ -324,10 +371,6 @@
                 { name: '可欣', score: 96, meaning: '温柔可爱，欣喜美好', source: '诗词', wuxing: '木' },
                 { name: '思琪', score: 93, meaning: '思念深厚，美好如花', source: '诗词', wuxing: '金' },
                 { name: '梦琪', score: 94, meaning: '梦回唐朝，美玉无瑕', source: '诗词', wuxing: '木' },
-                { name: '欣悦', score: 92, meaning: '欣喜愉悦，悦人悦己', source: '现代', wuxing: '金' },
-                { name: '雪晴', score: 93, meaning: '雪后初晴，清新美好', source: '现代', wuxing: '水' },
-                { name: '雅婷', score: 91, meaning: '高雅美好，婷婷玉立', source: '现代', wuxing: '火' },
-                { name: '紫萱', score: 92, meaning: '紫气东来，忘忧快乐', source: '现代', wuxing: '木' },
             ]
         };
         
@@ -349,12 +392,23 @@
         
         // 生成名字
         function generateNames() {
+            if (credits <= 0) {
+                showToast('请先兑换次数');
+                switchTab('redeem');
+                return;
+            }
+            
             const surname = document.getElementById('surname').value.trim();
             const birthday = document.getElementById('birthday').value;
             
-            if (!surname) { alert('请输入姓氏'); return; }
-            if (!selectedGender) { alert('请选择性别'); return; }
-            if (!birthday) { alert('请选择出生日期'); return; }
+            if (!surname) { showToast('请输入姓氏'); return; }
+            if (!selectedGender) { showToast('请选择性别'); return; }
+            if (!birthday) { showToast('请选择出生日期'); return; }
+            
+            // 扣除次数
+            credits--;
+            localStorage.setItem('naming_credits', credits);
+            updateCreditsDisplay();
             
             const names = allNames[selectedGender] || [];
             const shuffled = [...names].sort(() => Math.random() - 0.5);
@@ -368,10 +422,6 @@
                     </div>
                     <div class="meaning">💫 ${n.meaning}</div>
                     <div class="source">${n.source}</div>
-                    <div class="action-btns">
-                        <div class="action-btn" onclick="saveName('${surname}${n.name}')">❤️ 收藏</div>
-                        <div class="action-btn" onclick="shareName('${surname}${n.name}')">📤 分享</div>
-                    </div>
                 </div>
             `).join('');
             
@@ -383,20 +433,17 @@
         // 查重名
         function checkName() {
             const name = document.getElementById('checkName').value.trim();
-            if (!name) { alert('请输入名字'); return; }
+            if (!name) { showToast('请输入名字'); return; }
             
-            // 模拟重名率数据
             const popularNames = ['浩然', '一诺', '梓涵', '诗涵', '欣怡', '雨晴', '思远', '明轩'];
-            const isCommon = popularNames.includes(name.replace(/^./, n => n));
+            const isCommon = popularNames.some(n => name.includes(n));
             
             let score, label;
             if (isCommon) {
-                const random = Math.floor(Math.random() * 5) + 15;
-                score = random + '%';
+                score = (Math.floor(Math.random() * 5) + 15) + '%';
                 label = '较高，建议换名';
             } else {
-                const random = Math.floor(Math.random() * 3) + 1;
-                score = random + '%';
+                score = (Math.floor(Math.random() * 3) + 1) + '%';
                 label = '较低，名字独特';
             }
             
@@ -422,57 +469,6 @@
             document.getElementById('zodiac-wuxing').textContent = data.wuxing;
             
             document.getElementById('zodiac-result').classList.add('show');
-        }
-        
-        // 搜索
-        function searchNames() {
-            const keyword = document.getElementById('searchInput').value.trim();
-            const resultDiv = document.getElementById('searchResult');
-            
-            if (!keyword) {
-                resultDiv.innerHTML = '';
-                return;
-            }
-            
-            const all = [...allNames.boy, ...allNames.girl];
-            const results = all.filter(n => n.name.includes(keyword));
-            
-            if (results.length === 0) {
-                resultDiv.innerHTML = '<div class="empty">未找到相关名字</div>';
-                return;
-            }
-            
-            resultDiv.innerHTML = results.map(n => `
-                <div class="search-item">
-                    <div class="search-item-name">${n.name} <span class="wuxing-tag">${n.wuxing}</span></div>
-                    <div class="search-item-info">${n.meaning} · ${n.source}</div>
-                </div>
-            `).join('');
-        }
-        
-        // 收藏
-        function saveName(name) {
-            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-            if (!favorites.includes(name)) {
-                favorites.push(name);
-                localStorage.setItem('favorites', JSON.stringify(favorites));
-                alert('已收藏: ' + name);
-            } else {
-                alert('已收藏过: ' + name);
-            }
-        }
-        
-        // 分享
-        function shareName(name) {
-            if (navigator.share) {
-                navigator.share({
-                    title: '智能起名',
-                    text: '推荐名字: ' + name,
-                    url: window.location.href
-                });
-            } else {
-                alert('分享链接已复制');
-            }
         }
     </script>
 </body>
