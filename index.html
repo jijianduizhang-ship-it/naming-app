@@ -3,191 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能起名 - 测试版</title>
+    <title>智能起名 - 宝宝取名</title>
     <style>
-        :root {
-            --primary: #4CAF50;
-            --primary-dark: #2E7D32;
-            --bg: #E8F5E9;
-            --white: #ffffff;
-            --text: #333;
-            --text-light: #666;
-        }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #6366F1;
+            --primary-light: #8B5CF6;
+            --primary-dark: #4F46E5;
+            --gold: #F59E0B;
+            --gold-light: #FCD34D;
+        }
         
         body {
             font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: linear-gradient(180deg, var(--bg) 0%, var(--white) 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            padding: 20px;
+            color: white;
         }
         
-        .container { max-width: 480px; margin: 0 auto; }
+        .container { max-width: 480px; margin: 0 auto; min-height: 100vh; }
         
         /* Header */
         .header {
+            padding: 60px 30px 40px;
             text-align: center;
-            padding: 40px 0;
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.3) 0%, transparent 100%);
+            position: relative;
+            overflow: hidden;
         }
         
-        .logo { font-size: 80px; margin-bottom: 16px; }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .logo {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
         
         .app-name {
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--primary-dark);
+            position: relative;
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
+            letter-spacing: 2px;
         }
         
-        .slogan { color: var(--text-light); font-size: 14px; }
+        .slogan {
+            position: relative;
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a2e;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 32px;
+            margin: 0 20px 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title .icon { font-size: 24px; }
         
         /* Form */
-        .form {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        
         .form-item { margin-bottom: 24px; }
         
         .label {
             display: block;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text);
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
             margin-bottom: 10px;
         }
         
         input, select {
             width: 100%;
-            height: 50px;
-            padding: 0 16px;
-            border: 2px solid #eee;
-            border-radius: 12px;
+            height: 56px;
+            padding: 0 20px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
             font-size: 16px;
+            color: white;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.3s;
         }
         
-        input:focus, select:focus { border-color: var(--primary); }
+        input:focus, select:focus {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        input::placeholder { color: rgba(255,255,255,0.4); }
         
         /* Gender */
         .gender-select { display: flex; gap: 16px; }
         
         .gender-btn {
             flex: 1;
-            height: 80px;
-            background: #f5f5f5;
-            border-radius: 12px;
+            height: 100px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
+        
+        .gender-btn .icon { font-size: 40px; margin-bottom: 8px; }
         
         .gender-btn.active {
-            background: #E8F5E9;
-            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-color: transparent;
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
         }
-        
-        .gender-btn .icon { font-size: 32px; margin-bottom: 4px; }
         
         /* Button */
         .btn {
             width: 100%;
-            height: 56px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             border: none;
-            border-radius: 28px;
+            border-radius: 32px;
             color: white;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(76,175,80,0.3);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+            letter-spacing: 2px;
         }
         
         .btn:active { transform: scale(0.98); }
         
         /* Results */
-        .results {
-            display: none;
-            margin-top: 24px;
+        .results { display: none; margin: 0 20px 20px; }
+        .results.show { display: block; animation: slideUp 0.5s ease; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .results.show { display: block; }
-        
         .results-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--text);
-            margin-bottom: 16px;
+            font-size: 22px;
+            font-weight: 600;
             text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .name-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 24px;
             margin-bottom: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            animation: fadeIn 0.5s ease backwards;
+        }
+        
+        .name-card:nth-child(1) { animation-delay: 0.1s; }
+        .name-card:nth-child(2) { animation-delay: 0.2s; }
+        .name-card:nth-child(3) { animation-delay: 0.3s; }
+        .name-card:nth-child(4) { animation-delay: 0.4s; }
+        .name-card:nth-child(5) { animation-delay: 0.5s; }
+        .name-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .name-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
         }
         
         .name-main {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         
         .name-text {
-            font-size: 32px;
-            font-weight: bold;
-            color: var(--primary-dark);
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .score-badge {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 6px 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 8px 20px;
             border-radius: 20px;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 18px;
         }
         
-        .meaning { font-size: 14px; color: var(--text-light); margin-bottom: 6px; }
-        .source { font-size: 13px; color: #999; }
+        .meaning { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+        .source { font-size: 13px; color: rgba(255,255,255,0.5); }
         
-        /* Tabs */
-        .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .source::before { content: '📖 '; }
         
-        .tab {
-            padding: 8px 16px;
-            background: #f5f5f5;
-            border-radius: 20px;
+        /* Decorative */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255,255,255,0.4);
             font-size: 13px;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-        
-        .tab.active {
-            background: var(--primary);
-            color: white;
         }
     </style>
 </head>
 <body>
+    <div class="stars" id="stars"></div>
+    
     <div class="container">
         <div class="header">
             <div class="logo">✨</div>
             <div class="app-name">智能起名</div>
             <div class="slogan">结合八字五行 · 生肖属相 · 诗词典故</div>
+            <div class="badge">🎁 免费 · 智能 · 专业</div>
         </div>
         
-        <div class="form">
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📝</span>
+                填写信息
+            </div>
+            
             <div class="form-item">
                 <label class="label">姓氏</label>
                 <input type="text" id="surname" placeholder="请输入姓氏" maxlength="1">
@@ -209,19 +342,34 @@
             
             <div class="form-item">
                 <label class="label">出生日期</label>
-                <input type="date" id="birthday">
+                <input type="date" id="birthday" style="color-scheme: dark;">
             </div>
             
-            <button class="btn" onclick="generateNames()">✨ 生成名字</button>
+            <button class="btn" onclick="generateNames()">开始起名</button>
         </div>
         
         <div class="results" id="results">
-            <div class="results-title">为您推荐的名字</div>
+            <div class="results-title">✨ 为您推荐的名字</div>
             <div id="namesList"></div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 智能起名 · 让名字更有意义</p>
         </div>
     </div>
     
     <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+        
         let selectedGender = '';
         
         function selectGender(gender) {
@@ -233,24 +381,20 @@
         
         const nameDatabase = {
             boy: [
-                { name: '浩然', score: 95, meaning: '正气广大，胸怀宽广', source: '《孟子》' },
-                { name: '明轩', score: 92, meaning: '聪明睿智，气宇轩昂', source: '成语' },
-                { name: '思远', score: 90, meaning: '思虑深远，志存高远', source: '《诗经》' },
-                { name: '梓涵', score: 88, meaning: '生机勃勃，涵养深厚', source: '诗词' },
-                { name: '一诺', score: 93, meaning: '一言九鼎，诚实守信', source: '成语' },
-                { name: '宇航', score: 91, meaning: '遨游宇宙，探索未知', source: '现代' },
-                { name: '瑾瑜', score: 94, meaning: '美玉无瑕，光彩照人', source: '《诗经》' },
-                { name: '奕辰', score: 89, meaning: '神采奕奕，星辰大海', source: '诗词' },
+                { name: '浩然', score: 98, meaning: '正气广大，胸怀宽广', source: '《孟子》' },
+                { name: '明轩', score: 96, meaning: '聪明睿智，气宇轩昂', source: '成语' },
+                { name: '思远', score: 95, meaning: '思虑深远，志存高远', source: '《诗经》' },
+                { name: '一诺', score: 97, meaning: '一言九鼎，诚实守信', source: '成语' },
+                { name: '宇航', score: 94, meaning: '遨游宇宙，探索未知', source: '现代' },
+                { name: '瑾瑜', score: 96, meaning: '美玉无瑕，光彩照人', source: '《诗经》' },
             ],
             girl: [
-                { name: '诗涵', score: 94, meaning: '诗情画意，含苞待放', source: '《诗经》' },
-                { name: '雨晴', score: 92, meaning: '雨过天晴，清新美好', source: '诗词' },
-                { name: '欣怡', score: 90, meaning: '欣喜愉悦，心旷神怡', source: '诗词' },
-                { name: '梓萱', score: 89, meaning: '生机勃勃，美丽坚强', source: '诗词' },
-                { name: '雅楠', score: 91, meaning: '高雅大方，坚韧不拔', source: '成语' },
-                { name: '思琪', score: 88, meaning: '思念深厚，美好如花', source: '诗词' },
-                { name: '可欣', score: 93, meaning: '温柔可爱，欣喜美好', source: '诗词' },
-                { name: '佳怡', score: 90, meaning: '美好佳肴，心旷神怡', source: '诗词' },
+                { name: '诗涵', score: 97, meaning: '诗情画意，含苞待放', source: '《诗经》' },
+                { name: '雨晴', score: 96, meaning: '雨过天晴，清新美好', source: '诗词' },
+                { name: '欣怡', score: 95, meaning: '欣喜愉悦，心旷神怡', source: '诗词' },
+                { name: '梓萱', score: 94, meaning: '生机勃勃，美丽坚强', source: '诗词' },
+                { name: '雅楠', score: 95, meaning: '高雅大方，坚韧不拔', source: '成语' },
+                { name: '可欣', score: 96, meaning: '温柔可爱，欣喜美好', source: '诗词' },
             ]
         };
         
@@ -271,29 +415,24 @@
                 return;
             }
             
-            // Get names
             const names = nameDatabase[selectedGender] || [];
-            
-            // Shuffle and pick 6
             const shuffled = [...names].sort(() => Math.random() - 0.5);
             const selected = shuffled.slice(0, 6);
             
-            // Render
             const listHtml = selected.map(n => `
                 <div class="name-card">
                     <div class="name-main">
                         <span class="name-text">${surname}${n.name}</span>
                         <span class="score-badge">${n.score}分</span>
                     </div>
-                    <div class="meaning">📝 ${n.meaning}</div>
-                    <div class="source">📖 出自 ${n.source}</div>
+                    <div class="meaning">💫 ${n.meaning}</div>
+                    <div class="source">${n.source}</div>
                 </div>
             `).join('');
             
             document.getElementById('namesList').innerHTML = listHtml;
             document.getElementById('results').classList.add('show');
             
-            // Scroll to results
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
