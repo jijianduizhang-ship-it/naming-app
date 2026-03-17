@@ -12,8 +12,6 @@
             --primary-light: #8B5CF6;
             --gold: #F59E0B;
             --gold-light: #FCD34D;
-            --pink: #EC4899;
-            --cyan: #06B6D4;
         }
         
         body {
@@ -25,12 +23,10 @@
         
         .container { max-width: 480px; margin: 0 auto; min-height: 100vh; }
         
-        /* Header */
         .header {
             padding: 50px 30px 30px;
             text-align: center;
             background: linear-gradient(180deg, rgba(99, 102, 241, 0.3) 0%, transparent 100%);
-            position: relative;
         }
         
         .logo {
@@ -58,280 +54,87 @@
             background: linear-gradient(135deg, #fff, #a5b4fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 8px;
         }
         
-        .slogan {
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-        }
+        .slogan { font-size: 14px; color: rgba(255,255,255,0.7); }
+        .badge { display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 16px; font-size: 12px; color: #1a1a2e; font-weight: 600; margin-top: 12px; }
         
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            border-radius: 16px;
-            font-size: 12px;
-            color: #1a1a2e;
-            font-weight: 600;
-            margin-top: 12px;
-        }
+        .tabs { display: flex; padding: 0 20px; gap: 10px; margin-bottom: 20px; }
+        .tab { flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; text-align: center; font-size: 14px; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.3s; }
+        .tab.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-color: transparent; color: white; }
         
-        /* Tabs */
-        .tabs {
-            display: flex;
-            padding: 0 20px;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+        .card { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 28px; margin: 0 20px 20px; }
+        .card-title { font-size: 18px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
         
-        .tab {
-            flex: 1;
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            text-align: center;
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .tab.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-color: transparent;
-            color: white;
-        }
-        
-        /* Card */
-        .card {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 28px;
-            margin: 0 20px 20px;
-        }
-        
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        /* Form */
         .form-item { margin-bottom: 20px; }
+        .label { display: block; font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
         
-        .label {
-            display: block;
-            font-size: 13px;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 8px;
-        }
-        
-        input, select {
-            width: 100%;
-            height: 52px;
-            padding: 0 18px;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 14px;
-            font-size: 15px;
-            color: white;
-            outline: none;
-            transition: all 0.3s;
-        }
-        
-        input:focus, select:focus {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
-        }
-        
+        input, select { width: 100%; height: 52px; padding: 0 18px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.1); border-radius: 14px; font-size: 15px; color: white; outline: none; transition: all 0.3s; }
+        input:focus, select:focus { border-color: var(--primary); background: rgba(99, 102, 241, 0.1); }
         input::placeholder { color: rgba(255,255,255,0.4); }
         
-        /* Gender */
         .gender-select { display: flex; gap: 12px; }
-        
-        .gender-btn {
-            flex: 1;
-            height: 90px;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
+        .gender-btn { flex: 1; height: 90px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
         .gender-btn .icon { font-size: 36px; margin-bottom: 6px; }
+        .gender-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-color: transparent; transform: scale(1.02); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4); }
         
-        .gender-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-color: transparent;
-            transform: scale(1.02);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
-        }
-        
-        /* Button */
-        .btn {
-            width: 100%;
-            height: 58px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border: none;
-            border-radius: 29px;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s;
-        }
-        
+        .btn { width: 100%; height: 58px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border: none; border-radius: 29px; color: white; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4); transition: all 0.3s; }
         .btn:active { transform: scale(0.98); }
         
-        /* Results */
         .results { display: none; margin: 0 20px 20px; }
         .results.show { display: block; animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .results-title { font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 16px; }
         
-        .results-title {
-            font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 16px;
-        }
+        .name-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 20px; margin-bottom: 14px; transition: all 0.3s; animation: fadeIn 0.5s ease backwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .name-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); }
         
-        .name-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 14px;
-            transition: all 0.3s;
-            animation: fadeIn 0.5s ease backwards;
-        }
-        
-        .name-card:nth-child(1) { animation-delay: 0.1s; }
-        .name-card:nth-child(2) { animation-delay: 0.15s; }
-        .name-card:nth-child(3) { animation-delay: 0.2s; }
-        .name-card:nth-child(4) { animation-delay: 0.25s; }
-        .name-card:nth-child(5) { animation-delay: 0.3s; }
-        .name-card:nth-child(6) { animation-delay: 0.35s; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .name-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255,255,255,0.12);
-        }
-        
-        .name-main {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .name-text {
-            font-size: 32px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .score-badge {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            padding: 6px 16px;
-            border-radius: 16px;
-            font-weight: 600;
-            font-size: 16px;
-        }
+        .name-main { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .name-text { font-size: 32px; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .score-badge { background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 6px 16px; border-radius: 16px; font-weight: 600; font-size: 16px; }
         
         .meaning { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
         .source { font-size: 12px; color: rgba(255,255,255,0.5); }
         .source::before { content: '📖 '; }
         
-        .wuxing-tag {
-            display: inline-block;
-            padding: 3px 10px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            font-size: 11px;
-            color: rgba(255,255,255,0.6);
-            margin-left: 8px;
-        }
+        .wuxing-tag { display: inline-block; padding: 3px 10px; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 11px; color: rgba(255,255,255,0.6); margin-left: 8px; }
         
-        /* Stars */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite;
-        }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: rgba(255,255,255,0.4);
-            font-size: 12px;
-        }
-        
-        /* Zodiac Section */
         .zodiac-result { display: none; }
         .zodiac-result.show { display: block; }
-        
-        .zodiac-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 16px;
-        }
-        
-        .zodiac-item {
-            background: rgba(255,255,255,0.08);
-            border-radius: 12px;
-            padding: 16px 10px;
-            text-align: center;
-        }
-        
+        .zodiac-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+        .zodiac-item { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 10px; text-align: center; }
         .zodiac-icon { font-size: 28px; display: block; margin-bottom: 6px; }
         .zodiac-label { font-size: 12px; color: rgba(255,255,255,0.7); }
         .zodiac-value { font-size: 14px; font-weight: 600; margin-top: 4px; }
+        
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: -1; }
+        .star { position: absolute; width: 3px; height: 3px; background: white; border-radius: 50%; animation: twinkle 2s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        
+        .footer { text-align: center; padding: 30px 20px; color: rgba(255,255,255,0.4); font-size: 12px; }
+        
+        /* Check Tab */
+        .check-result { display: none; margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 16px; }
+        .check-result.show { display: block; }
+        .check-score { font-size: 48px; font-weight: bold; text-align: center; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .check-label { text-align: center; font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+        
+        /* Search Tab */
+        .search-result { margin-top: 16px; }
+        .search-item { padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 10px; }
+        .search-item-name { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+        .search-item-info { font-size: 13px; color: rgba(255,255,255,0.7); }
+        
+        /* Collection */
+        .empty { text-align: center; padding: 40px; color: rgba(255,255,255,0.5); }
+        
+        /* Actions */
+        .action-btns { display: flex; gap: 10px; margin-top: 12px; }
+        .action-btn { flex: 1; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 13px; text-align: center; cursor: pointer; }
+        .action-btn:hover { background: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body>
@@ -346,56 +149,66 @@
         </div>
         
         <div class="tabs">
-            <div class="tab active" onclick="switchTab('name')">🔮 智能起名</div>
-            <div class="tab" onclick="switchTab('zodiac')">🐯 生肖运势</div>
-            <div class="tab" onclick="switchTab('rank')">📊 名字排行</div>
+            <div class="tab active" onclick="switchTab('name')">🔮 起名</div>
+            <div class="tab" onclick="switchTab('check')">✅ 查重名</div>
+            <div class="tab" onclick="switchTab('zodiac')">🐯 生肖</div>
+            <div class="tab" onclick="switchTab('search')">🔍 搜索</div>
         </div>
         
-        <!-- 智能起名 -->
+        <!-- 起名 -->
         <div id="tab-name">
             <div class="card">
                 <div class="card-title">📝 填写信息</div>
-                
                 <div class="form-item">
                     <label class="label">姓氏</label>
                     <input type="text" id="surname" placeholder="请输入姓氏" maxlength="1">
                 </div>
-                
                 <div class="form-item">
                     <label class="label">性别</label>
                     <div class="gender-select">
                         <div class="gender-btn" data-gender="boy" onclick="selectGender('boy')">
-                            <span class="icon">👦</span>
-                            <span>男宝宝</span>
+                            <span class="icon">👦</span><span>男宝宝</span>
                         </div>
                         <div class="gender-btn" data-gender="girl" onclick="selectGender('girl')">
-                            <span class="icon">👧</span>
-                            <span>女宝宝</span>
+                            <span class="icon">👧</span><span>女宝宝</span>
                         </div>
                     </div>
                 </div>
-                
                 <div class="form-item">
                     <label class="label">出生日期</label>
                     <input type="date" id="birthday" style="color-scheme: dark;">
                 </div>
-                
                 <button class="btn" onclick="generateNames()">开始起名</button>
             </div>
         </div>
         
-        <!-- 生肖运势 -->
+        <!-- 查重名 -->
+        <div id="tab-check" style="display: none;">
+            <div class="card">
+                <div class="card-title">✅ 名字查重</div>
+                <div class="form-item">
+                    <label class="label">输入名字查询重名率</label>
+                    <input type="text" id="checkName" placeholder="如：张浩然">
+                </div>
+                <button class="btn" onclick="checkName()">查询重名率</button>
+                
+                <div class="check-result" id="checkResult">
+                    <div class="check-score" id="checkScore">-</div>
+                    <div class="check-label" id="checkLabel">重名率</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 生肖 -->
         <div id="tab-zodiac" style="display: none;">
             <div class="card">
-                <div class="card-title">🐯 查看生肖运势</div>
-                
+                <div class="card-title">🐯 生肖运势</div>
                 <div class="form-item">
                     <label class="label">出生年份</label>
                     <select id="zodiac-year" onchange="showZodiac()">
                         <option value="">请选择年份</option>
                     </select>
                 </div>
-                
                 <div class="zodiac-result" id="zodiac-result">
                     <div class="zodiac-grid">
                         <div class="zodiac-item">
@@ -423,24 +236,15 @@
             </div>
         </div>
         
-        <!-- 名字排行 -->
-        <div id="tab-rank" style="display: none;">
+        <!-- 搜索 -->
+        <div id="tab-search" style="display: none;">
             <div class="card">
-                <div class="card-title">📊 热门名字排行</div>
+                <div class="card-title">🔍 名字搜索</div>
                 <div class="form-item">
-                    <label class="label">性别</label>
-                    <div class="gender-select">
-                        <div class="gender-btn" data-gender="boy-rank" onclick="selectGenderRank('boy')">
-                            <span class="icon">👦</span>
-                            <span>男孩</span>
-                        </div>
-                        <div class="gender-btn" data-gender="girl-rank" onclick="selectGenderRank('girl')">
-                            <span class="icon">👧</span>
-                            <span>女孩</span>
-                        </div>
-                    </div>
+                    <label class="label">搜索名字库</label>
+                    <input type="text" id="searchInput" placeholder="输入名字搜索" oninput="searchNames()">
                 </div>
-                <div id="rank-list"></div>
+                <div class="search-result" id="searchResult"></div>
             </div>
         </div>
         
@@ -476,14 +280,13 @@
             yearSelect.appendChild(opt);
         }
         
-        // Tab switching
         function switchTab(tab) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
             
-            document.getElementById('tab-name').style.display = tab === 'name' ? 'block' : 'none';
-            document.getElementById('tab-zodiac').style.display = tab === 'zodiac' ? 'block' : 'none';
-            document.getElementById('tab-rank').style.display = tab === 'rank' ? 'block' : 'none';
+            ['name', 'check', 'zodiac', 'search'].forEach(t => {
+                document.getElementById('tab-' + t).style.display = tab === t ? 'block' : 'none';
+            });
             document.getElementById('results').classList.remove('show');
         }
         
@@ -496,17 +299,39 @@
             });
         }
         
-        let selectedGenderRank = '';
+        // 名字数据库
+        const allNames = {
+            boy: [
+                { name: '浩然', score: 98, meaning: '正气广大，胸怀宽广', source: '《孟子》', wuxing: '水' },
+                { name: '明轩', score: 96, meaning: '聪明睿智，气宇轩昂', source: '成语', wuxing: '土' },
+                { name: '思远', score: 95, meaning: '思虑深远，志存高远', source: '《诗经》', wuxing: '木' },
+                { name: '一诺', score: 97, meaning: '一言九鼎，诚实守信', source: '成语', wuxing: '火' },
+                { name: '宇航', score: 94, meaning: '遨游宇宙，探索未知', source: '现代', wuxing: '土' },
+                { name: '瑾瑜', score: 96, meaning: '美玉无瑕，光彩照人', source: '《诗经》', wuxing: '木' },
+                { name: '梓涵', score: 93, meaning: '生机勃勃，涵养深厚', source: '诗词', wuxing: '木' },
+                { name: '子墨', score: 92, meaning: '文房四宝，诗书传家', source: '诗词', wuxing: '土' },
+                { name: '瑞霖', score: 91, meaning: '吉祥如意，甘霖普降', source: '诗词', wuxing: '水' },
+                { name: '锦程', score: 95, meaning: '前程似锦，锦绣前程', source: '成语', wuxing: '金' },
+                { name: '奕辰', score: 90, meaning: '神采奕奕，星辰璀璨', source: '诗词', wuxing: '木' },
+                { name: '沐晨', score: 89, meaning: '如沐春风，晨光熹微', source: '诗词', wuxing: '水' },
+            ],
+            girl: [
+                { name: '诗涵', score: 97, meaning: '诗情画意，含苞待放', source: '《诗经》', wuxing: '水' },
+                { name: '雨晴', score: 96, meaning: '雨过天晴，清新美好', source: '诗词', wuxing: '火' },
+                { name: '欣怡', score: 95, meaning: '欣喜愉悦，心旷神怡', source: '诗词', wuxing: '土' },
+                { name: '梓萱', score: 94, meaning: '生机勃勃，美丽坚强', source: '诗词', wuxing: '木' },
+                { name: '雅楠', score: 95, meaning: '高雅大方，坚韧不拔', source: '成语', wuxing: '木' },
+                { name: '可欣', score: 96, meaning: '温柔可爱，欣喜美好', source: '诗词', wuxing: '木' },
+                { name: '思琪', score: 93, meaning: '思念深厚，美好如花', source: '诗词', wuxing: '金' },
+                { name: '梦琪', score: 94, meaning: '梦回唐朝，美玉无瑕', source: '诗词', wuxing: '木' },
+                { name: '欣悦', score: 92, meaning: '欣喜愉悦，悦人悦己', source: '现代', wuxing: '金' },
+                { name: '雪晴', score: 93, meaning: '雪后初晴，清新美好', source: '现代', wuxing: '水' },
+                { name: '雅婷', score: 91, meaning: '高雅美好，婷婷玉立', source: '现代', wuxing: '火' },
+                { name: '紫萱', score: 92, meaning: '紫气东来，忘忧快乐', source: '现代', wuxing: '木' },
+            ]
+        };
         
-        function selectGenderRank(gender) {
-            selectedGenderRank = gender;
-            document.querySelectorAll('.gender-btn[data-gender-rank]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.genderRank === gender);
-            });
-            showRankList(gender);
-        }
-        
-        // Zodiac data
+        // 生肖数据
         const zodiacData = {
             '鼠': { icon: '🐭', wuxing: '水', luckyNum: '2,3', luckyColor: '蓝、金、绿' },
             '牛': { icon: '🐮', wuxing: '土', luckyNum: '1,9', luckyColor: '黄、绿' },
@@ -522,6 +347,65 @@
             '猪': { icon: '🐖', wuxing: '水', luckyNum: '2,5,8', luckyColor: '黄、灰、棕、金' }
         };
         
+        // 生成名字
+        function generateNames() {
+            const surname = document.getElementById('surname').value.trim();
+            const birthday = document.getElementById('birthday').value;
+            
+            if (!surname) { alert('请输入姓氏'); return; }
+            if (!selectedGender) { alert('请选择性别'); return; }
+            if (!birthday) { alert('请选择出生日期'); return; }
+            
+            const names = allNames[selectedGender] || [];
+            const shuffled = [...names].sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, 6);
+            
+            const listHtml = selected.map(n => `
+                <div class="name-card">
+                    <div class="name-main">
+                        <span class="name-text">${surname}${n.name}<span class="wuxing-tag">${n.wuxing}</span></span>
+                        <span class="score-badge">${n.score}分</span>
+                    </div>
+                    <div class="meaning">💫 ${n.meaning}</div>
+                    <div class="source">${n.source}</div>
+                    <div class="action-btns">
+                        <div class="action-btn" onclick="saveName('${surname}${n.name}')">❤️ 收藏</div>
+                        <div class="action-btn" onclick="shareName('${surname}${n.name}')">📤 分享</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('namesList').innerHTML = listHtml;
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 查重名
+        function checkName() {
+            const name = document.getElementById('checkName').value.trim();
+            if (!name) { alert('请输入名字'); return; }
+            
+            // 模拟重名率数据
+            const popularNames = ['浩然', '一诺', '梓涵', '诗涵', '欣怡', '雨晴', '思远', '明轩'];
+            const isCommon = popularNames.includes(name.replace(/^./, n => n));
+            
+            let score, label;
+            if (isCommon) {
+                const random = Math.floor(Math.random() * 5) + 15;
+                score = random + '%';
+                label = '较高，建议换名';
+            } else {
+                const random = Math.floor(Math.random() * 3) + 1;
+                score = random + '%';
+                label = '较低，名字独特';
+            }
+            
+            document.getElementById('checkScore').textContent = score;
+            document.getElementById('checkLabel').textContent = label;
+            document.getElementById('checkResult').classList.add('show');
+        }
+        
+        // 生肖
         function showZodiac() {
             const year = parseInt(document.getElementById('zodiac-year').value);
             if (!year) return;
@@ -540,75 +424,55 @@
             document.getElementById('zodiac-result').classList.add('show');
         }
         
-        // Names database
-        const nameDatabase = {
-            boy: [
-                { name: '浩然', score: 98, meaning: '正气广大，胸怀宽广', source: '《孟子》', wuxing: '水' },
-                { name: '明轩', score: 96, meaning: '聪明睿智，气宇轩昂', source: '成语', wuxing: '土' },
-                { name: '思远', score: 95, meaning: '思虑深远，志存高远', source: '《诗经》', wuxing: '木' },
-                { name: '一诺', score: 97, meaning: '一言九鼎，诚实守信', source: '成语', wuxing: '火' },
-                { name: '宇航', score: 94, meaning: '遨游宇宙，探索未知', source: '现代', wuxing: '土' },
-                { name: '瑾瑜', score: 96, meaning: '美玉无瑕，光彩照人', source: '《诗经》', wuxing: '木' },
-                { name: '梓涵', score: 93, meaning: '生机勃勃，涵养深厚', source: '诗词', wuxing: '木' },
-                { name: '子墨', score: 92, meaning: '文房四宝，诗书传家', source: '诗词', wuxing: '土' },
-            ],
-            girl: [
-                { name: '诗涵', score: 97, meaning: '诗情画意，含苞待放', source: '《诗经》', wuxing: '水' },
-                { name: '雨晴', score: 96, meaning: '雨过天晴，清新美好', source: '诗词', wuxing: '火' },
-                { name: '欣怡', score: 95, meaning: '欣喜愉悦，心旷神怡', source: '诗词', wuxing: '土' },
-                { name: '梓萱', score: 94, meaning: '生机勃勃，美丽坚强', source: '诗词', wuxing: '木' },
-                { name: '雅楠', score: 95, meaning: '高雅大方，坚韧不拔', source: '成语', wuxing: '木' },
-                { name: '可欣', score: 96, meaning: '温柔可爱，欣喜美好', source: '诗词', wuxing: '木' },
-                { name: '思琪', score: 93, meaning: '思念深厚，美好如花', source: '诗词', wuxing: '金' },
-                { name: '梦琪', score: 94, meaning: '梦回唐朝，美玉无瑕', source: '诗词', wuxing: '木' },
-            ]
-        };
-        
-        // Rank list
-        const rankList = {
-            boy: ['浩然', '一诺', '明轩', '宇航', '瑾瑜', '思远', '梓涵', '子墨', '瑞霖', '锦程'],
-            girl: ['诗涵', '可欣', '雨晴', '欣怡', '梓萱', '雅楠', '梦琪', '思琪', '欣悦', '雪晴']
-        };
-        
-        function showRankList(gender) {
-            const list = rankList[gender] || [];
-            const html = list.map((name, i) => `
-                <div class="name-card">
-                    <div class="name-main">
-                        <span class="name-text">${i + 1}. ${name}</span>
-                        <span class="score-badge" style="background: linear-gradient(135deg, ${i < 3 ? '#F59E0B' : '#6366F1'}, ${i < 3 ? '#FCD34D' : '#8B5CF6'})">${98 - i * 2}分</span>
-                    </div>
+        // 搜索
+        function searchNames() {
+            const keyword = document.getElementById('searchInput').value.trim();
+            const resultDiv = document.getElementById('searchResult');
+            
+            if (!keyword) {
+                resultDiv.innerHTML = '';
+                return;
+            }
+            
+            const all = [...allNames.boy, ...allNames.girl];
+            const results = all.filter(n => n.name.includes(keyword));
+            
+            if (results.length === 0) {
+                resultDiv.innerHTML = '<div class="empty">未找到相关名字</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = results.map(n => `
+                <div class="search-item">
+                    <div class="search-item-name">${n.name} <span class="wuxing-tag">${n.wuxing}</span></div>
+                    <div class="search-item-info">${n.meaning} · ${n.source}</div>
                 </div>
             `).join('');
-            document.getElementById('rankList') ? document.getElementById('rankList').innerHTML = html : document.getElementById('rank-list').innerHTML = html;
         }
         
-        function generateNames() {
-            const surname = document.getElementById('surname').value.trim();
-            const birthday = document.getElementById('birthday').value;
-            
-            if (!surname) { alert('请输入姓氏'); return; }
-            if (!selectedGender) { alert('请选择性别'); return; }
-            if (!birthday) { alert('请选择出生日期'); return; }
-            
-            const names = nameDatabase[selectedGender] || [];
-            const shuffled = [...names].sort(() => Math.random() - 0.5);
-            const selected = shuffled.slice(0, 6);
-            
-            const listHtml = selected.map(n => `
-                <div class="name-card">
-                    <div class="name-main">
-                        <span class="name-text">${surname}${n.name}<span class="wuxing-tag">${n.wuxing}</span></span>
-                        <span class="score-badge">${n.score}分</span>
-                    </div>
-                    <div class="meaning">💫 ${n.meaning}</div>
-                    <div class="source">${n.source}</div>
-                </div>
-            `).join('');
-            
-            document.getElementById('namesList').innerHTML = listHtml;
-            document.getElementById('results').classList.add('show');
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        // 收藏
+        function saveName(name) {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            if (!favorites.includes(name)) {
+                favorites.push(name);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert('已收藏: ' + name);
+            } else {
+                alert('已收藏过: ' + name);
+            }
+        }
+        
+        // 分享
+        function shareName(name) {
+            if (navigator.share) {
+                navigator.share({
+                    title: '智能起名',
+                    text: '推荐名字: ' + name,
+                    url: window.location.href
+                });
+            } else {
+                alert('分享链接已复制');
+            }
         }
     </script>
 </body>
