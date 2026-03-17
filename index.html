@@ -162,6 +162,17 @@
                     </div>
                 </div>
                 <div class="form-item">
+                    <label class="label">名字字数</label>
+                    <div class="gender-select">
+                        <div class="gender-btn" data-length="2" onclick="selectNameLength('2')">
+                            <span class="icon">✌️</span><span>两字名</span>
+                        </div>
+                        <div class="gender-btn" data-length="3" onclick="selectNameLength('3')">
+                            <span class="icon">🤟</span><span>三字名</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
                     <label class="label">出生日期</label>
                     <input type="date" id="birthday" style="color-scheme: dark;">
                 </div>
@@ -308,11 +319,19 @@
         }
         
         let selectedGender = '';
+        let selectedNameLength = '';
         
         function selectGender(gender) {
             selectedGender = gender;
             document.querySelectorAll('.gender-btn[data-gender]').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.gender === gender);
+            });
+        }
+        
+        function selectNameLength(length) {
+            selectedNameLength = length;
+            document.querySelectorAll('.gender-btn[data-length]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.length === length);
             });
         }
         
@@ -330,7 +349,7 @@
         }
         
         // 兑换码
-        function redeemCode() {
+        async function redeemCode() {
             const code = document.getElementById('redeemCode').value.trim().toUpperCase();
             
             if (!code) {
@@ -338,15 +357,27 @@
                 return;
             }
             
-            if (redeemCodes[code]) {
-                const reward = redeemCodes[code];
-                credits += reward.amount;
-                localStorage.setItem('naming_credits', credits);
-                updateCreditsDisplay();
-                document.getElementById('redeemCode').value = '';
-                showToast('✅ 兑换成功！获得' + reward.amount + '次');
-            } else {
-                showToast('❌ 兑换码无效');
+            try {
+                const response = await fetch('https://qm.imoons.cn/api/redeem', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    credits += data.amount;
+                    localStorage.setItem('naming_credits', credits);
+                    updateCreditsDisplay();
+                    document.getElementById('redeemCode').value = '';
+                    showToast('✅ 兑换成功！获得' + data.amount + '次');
+                } else {
+                    showToast('❌ ' + (data.message || '兑换码无效'));
+                }
+            } catch (error) {
+                console.error('兑换错误:', error);
+                showToast('❌ 兑换失败，请稍后重试');
             }
         }
         
@@ -390,8 +421,8 @@
             '猪': { icon: '🐖', wuxing: '水', luckyNum: '2,5,8', luckyColor: '黄、灰、棕、金' }
         };
         
-        // 生成名字
-        function generateNames() {
+        // 生成名字 - 调用AI接口
+        async function generateNames() {
             if (credits <= 0) {
                 showToast('请先兑换次数');
                 switchTab('redeem');
@@ -403,6 +434,7 @@
             
             if (!surname) { showToast('请输入姓氏'); return; }
             if (!selectedGender) { showToast('请选择性别'); return; }
+            if (!selectedNameLength) { showToast('请选择名字字数'); return; }
             if (!birthday) { showToast('请选择出生日期'); return; }
             
             // 扣除次数
@@ -410,22 +442,55 @@
             localStorage.setItem('naming_credits', credits);
             updateCreditsDisplay();
             
-            const names = allNames[selectedGender] || [];
-            const shuffled = [...names].sort(() => Math.random() - 0.5);
-            const selected = shuffled.slice(0, 6);
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            btn.textContent = 'AI正在生成名字...';
             
-            const listHtml = selected.map(n => `
-                <div class="name-card">
-                    <div class="name-main">
-                        <span class="name-text">${surname}${n.name}<span class="wuxing-tag">${n.wuxing}</span></span>
-                        <span class="score-badge">${n.score}分</span>
-                    </div>
-                    <div class="meaning">💫 ${n.meaning}</div>
-                    <div class="source">${n.source}</div>
-                </div>
-            `).join('');
+            try {
+                const response = await fetch('https://qm.imoons.cn/api/ai-generate-names', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        surname: surname,
+                        gender: selectedGender,
+                        birthday: birthday,
+                        nameLength: selectedNameLength
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.names && data.names.length > 0) {
+                    const listHtml = data.names.map(n => `
+                        <div class="name-card">
+                            <div class="name-main">
+                                <span class="name-text">${surname}${n.name}<span class="wuxing-tag">${n.wuxing || '待确定'}</span></span>
+                                <span class="score-badge">${n.score || 'AI'}</span>
+                            </div>
+                            <div class="meaning">💫 ${n.meaning || 'AI智能生成'}</div>
+                            <div class="source">🤖 ${data.source === 'ai' ? 'AI智能生成' : '本地推荐'}</div>
+                        </div>
+                    `).join('');
+                    
+                    document.getElementById('namesList').innerHTML = listHtml;
+                } else {
+                    showToast('生成失败，请重试');
+                    // 恢复次数
+                    credits++;
+                    localStorage.setItem('naming_credits', credits);
+                    updateCreditsDisplay();
+                }
+            } catch (error) {
+                console.error('API Error:', error);
+                showToast('网络错误，请重试');
+                // 恢复次数
+                credits++;
+                localStorage.setItem('naming_credits', credits);
+                updateCreditsDisplay();
+            }
             
-            document.getElementById('namesList').innerHTML = listHtml;
+            btn.disabled = false;
+            btn.textContent = '开始起名';
             document.getElementById('results').classList.add('show');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
