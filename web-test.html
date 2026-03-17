@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能起名 - 测试版</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #2E7D32;
+            --bg: #E8F5E9;
+            --white: #ffffff;
+            --text: #333;
+            --text-light: #666;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--white) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container { max-width: 480px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .logo { font-size: 80px; margin-bottom: 16px; }
+        
+        .app-name {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        .slogan { color: var(--text-light); font-size: 14px; }
+        
+        /* Form */
+        .form {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .form-item { margin-bottom: 24px; }
+        
+        .label {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        
+        input, select {
+            width: 100%;
+            height: 50px;
+            padding: 0 16px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus, select:focus { border-color: var(--primary); }
+        
+        /* Gender */
+        .gender-select { display: flex; gap: 16px; }
+        
+        .gender-btn {
+            flex: 1;
+            height: 80px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .gender-btn.active {
+            background: #E8F5E9;
+            border-color: var(--primary);
+        }
+        
+        .gender-btn .icon { font-size: 32px; margin-bottom: 4px; }
+        
+        /* Button */
+        .btn {
+            width: 100%;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            border-radius: 28px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(76,175,80,0.3);
+        }
+        
+        .btn:active { transform: scale(0.98); }
+        
+        /* Results */
+        .results {
+            display: none;
+            margin-top: 24px;
+        }
+        
+        .results.show { display: block; }
+        
+        .results-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .name-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        
+        .name-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .name-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .score-badge {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .meaning { font-size: 14px; color: var(--text-light); margin-bottom: 6px; }
+        .source { font-size: 13px; color: #999; }
+        
+        /* Tabs */
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        
+        .tab {
+            padding: 8px 16px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">✨</div>
+            <div class="app-name">智能起名</div>
+            <div class="slogan">结合八字五行 · 生肖属相 · 诗词典故</div>
+        </div>
+        
+        <div class="form">
+            <div class="form-item">
+                <label class="label">姓氏</label>
+                <input type="text" id="surname" placeholder="请输入姓氏" maxlength="1">
+            </div>
+            
+            <div class="form-item">
+                <label class="label">性别</label>
+                <div class="gender-select">
+                    <div class="gender-btn" data-gender="boy" onclick="selectGender('boy')">
+                        <span class="icon">👦</span>
+                        <span>男宝宝</span>
+                    </div>
+                    <div class="gender-btn" data-gender="girl" onclick="selectGender('girl')">
+                        <span class="icon">👧</span>
+                        <span>女宝宝</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-item">
+                <label class="label">出生日期</label>
+                <input type="date" id="birthday">
+            </div>
+            
+            <button class="btn" onclick="generateNames()">✨ 生成名字</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="results-title">为您推荐的名字</div>
+            <div id="namesList"></div>
+        </div>
+    </div>
+    
+    <script>
+        let selectedGender = '';
+        
+        function selectGender(gender) {
+            selectedGender = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.gender === gender);
+            });
+        }
+        
+        const nameDatabase = {
+            boy: [
+                { name: '浩然', score: 95, meaning: '正气广大，胸怀宽广', source: '《孟子》' },
+                { name: '明轩', score: 92, meaning: '聪明睿智，气宇轩昂', source: '成语' },
+                { name: '思远', score: 90, meaning: '思虑深远，志存高远', source: '《诗经》' },
+                { name: '梓涵', score: 88, meaning: '生机勃勃，涵养深厚', source: '诗词' },
+                { name: '一诺', score: 93, meaning: '一言九鼎，诚实守信', source: '成语' },
+                { name: '宇航', score: 91, meaning: '遨游宇宙，探索未知', source: '现代' },
+                { name: '瑾瑜', score: 94, meaning: '美玉无瑕，光彩照人', source: '《诗经》' },
+                { name: '奕辰', score: 89, meaning: '神采奕奕，星辰大海', source: '诗词' },
+            ],
+            girl: [
+                { name: '诗涵', score: 94, meaning: '诗情画意，含苞待放', source: '《诗经》' },
+                { name: '雨晴', score: 92, meaning: '雨过天晴，清新美好', source: '诗词' },
+                { name: '欣怡', score: 90, meaning: '欣喜愉悦，心旷神怡', source: '诗词' },
+                { name: '梓萱', score: 89, meaning: '生机勃勃，美丽坚强', source: '诗词' },
+                { name: '雅楠', score: 91, meaning: '高雅大方，坚韧不拔', source: '成语' },
+                { name: '思琪', score: 88, meaning: '思念深厚，美好如花', source: '诗词' },
+                { name: '可欣', score: 93, meaning: '温柔可爱，欣喜美好', source: '诗词' },
+                { name: '佳怡', score: 90, meaning: '美好佳肴，心旷神怡', source: '诗词' },
+            ]
+        };
+        
+        function generateNames() {
+            const surname = document.getElementById('surname').value.trim();
+            const birthday = document.getElementById('birthday').value;
+            
+            if (!surname) {
+                alert('请输入姓氏');
+                return;
+            }
+            if (!selectedGender) {
+                alert('请选择性别');
+                return;
+            }
+            if (!birthday) {
+                alert('请选择出生日期');
+                return;
+            }
+            
+            // Get names
+            const names = nameDatabase[selectedGender] || [];
+            
+            // Shuffle and pick 6
+            const shuffled = [...names].sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, 6);
+            
+            // Render
+            const listHtml = selected.map(n => `
+                <div class="name-card">
+                    <div class="name-main">
+                        <span class="name-text">${surname}${n.name}</span>
+                        <span class="score-badge">${n.score}分</span>
+                    </div>
+                    <div class="meaning">📝 ${n.meaning}</div>
+                    <div class="source">📖 出自 ${n.source}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('namesList').innerHTML = listHtml;
+            document.getElementById('results').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

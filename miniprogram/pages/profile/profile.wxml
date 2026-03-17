@@ -1,0 +1,64 @@
+<!--profile.wxml-->
+<view class="container">
+  <!-- User Info -->
+  <view class="user-card">
+    <view class="avatar">✨</view>
+    <text class="username">起名用户</text>
+  </view>
+
+  <!-- Menu -->
+  <view class="menu">
+    <view class="menu-item" bindtap="viewFavorites">
+      <view class="menu-icon">❤️</view>
+      <view class="menu-content">
+        <text class="menu-title">我的收藏</text>
+        <text class="menu-count">{{favorites.length}} 个名字</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+    
+    <view class="menu-item" bindtap="viewHistory">
+      <view class="menu-icon">📜</view>
+      <view class="menu-content">
+        <text class="menu-title">历史记录</text>
+        <text class="menu-count">{{history.length}} 条记录</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+    
+    <view class="menu-item" bindtap="shareApp">
+      <view class="menu-icon">📤</view>
+      <view class="menu-content">
+        <text class="menu-title">分享小程序</text>
+        <text class="menu-desc">分享给朋友一起起名</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+    
+    <view class="menu-item" bindtap="contactSupport">
+      <view class="menu-icon">💬</view>
+      <view class="menu-content">
+        <text class="menu-title">意见反馈</text>
+        <text class="menu-desc">联系我们改进产品</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- Tips -->
+  <view class="tips">
+    <view class="tips-title">💡 起名小知识</view>
+    <view class="tips-content">
+      <text>1. 好名字要音韵和谐，读起来朗朗上口</text>
+      <text>2. 寓意要美好，避免歧义</text>
+      <text>3. 结合八字五行，弥补命理不足</text>
+      <text>4. 注意生肖属相的宜忌</text>
+    </view>
+  </view>
+
+  <!-- Footer -->
+  <view class="footer">
+    <text>智能起名 v1.0.0</text>
+    <text>结合八字五行、生肖属相、诗词典故</text>
+  </view>
+</view>
